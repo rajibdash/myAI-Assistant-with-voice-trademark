@@ -1,0 +1,23 @@
+{
+  "name": "presentation-pptx-renderer",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "types": "json2ts -i ../../contracts/deck.schema.json -o src/deck.generated.d.ts --no-additionalProperties",
+    "build": "npm run types && tsc",
+    "check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "ajv": "8.17.1",
+    "pptxgenjs": "4.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "22.10.2",
+    "json-schema-to-typescript": "15.0.4",
+    "typescript": "5.7.3"
+  }
+}

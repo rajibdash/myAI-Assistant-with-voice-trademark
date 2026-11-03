@@ -205,6 +205,11 @@ cython_debug/
 # Temporary file for partial code execution
 tempCodeRunnerFile.py
 
+# Local presentation state and generated JavaScript
+.local-data/
+node_modules/
+workers/render/dist/
+
 # Ruff stuff:
 .ruff_cache/
 

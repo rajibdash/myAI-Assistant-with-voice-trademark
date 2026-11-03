@@ -1,0 +1,110 @@
+{
+  "$defs": {
+    "Citation": {
+      "additionalProperties": false,
+      "properties": {
+        "end": {
+          "exclusiveMinimum": 0,
+          "title": "End",
+          "type": "integer"
+        },
+        "quote": {
+          "maxLength": 280,
+          "minLength": 1,
+          "title": "Quote",
+          "type": "string"
+        },
+        "source_hash": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Source Hash",
+          "type": "string"
+        },
+        "source_id": {
+          "pattern": "^[a-f0-9]{32}$",
+          "title": "Source Id",
+          "type": "string"
+        },
+        "source_title": {
+          "maxLength": 64,
+          "minLength": 1,
+          "pattern": "^[^\\r\\n\\t]+$",
+          "title": "Source Title",
+          "type": "string"
+        },
+        "start": {
+          "minimum": 0,
+          "title": "Start",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "source_id",
+        "source_title",
+        "source_hash",
+        "start",
+        "end",
+        "quote"
+      ],
+      "title": "Citation",
+      "type": "object"
+    },
+    "Slide": {
+      "additionalProperties": false,
+      "properties": {
+        "citation": {
+          "$ref": "#/$defs/Citation"
+        },
+        "id": {
+          "pattern": "^[a-f0-9]{32}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "title": {
+          "maxLength": 64,
+          "minLength": 1,
+          "pattern": "^[^\\r\\n\\t]+$",
+          "title": "Title",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "citation"
+      ],
+      "title": "Slide",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1",
+      "default": "1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "slides": {
+      "items": {
+        "$ref": "#/$defs/Slide"
+      },
+      "maxItems": 12,
+      "minItems": 1,
+      "title": "Slides",
+      "type": "array"
+    },
+    "title": {
+      "maxLength": 64,
+      "minLength": 1,
+      "pattern": "^[^\\r\\n\\t]+$",
+      "title": "Title",
+      "type": "string"
+    }
+  },
+  "required": [
+    "title",
+    "slides"
+  ],
+  "title": "DeckSpec",
+  "type": "object"
+}
