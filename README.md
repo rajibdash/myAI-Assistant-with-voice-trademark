@@ -9,6 +9,27 @@ A reference design for an AI assistant that presents approved material in the au
 - Use only a voice and likeness for which the project owner has explicit rights and consent. Do not impersonate another person.
 - Keep provider credentials on the server, minimize stored audience data, and provide a human moderator and a stop/disable control.
 
+## Automated presentation product blueprint
+
+The proposed product takes an authorized brief and reviewed sources, produces a cited
+slide deck and narration in the owner's verified voice, renders a captioned video,
+and optionally runs moderated audience Q&A. Routine generation can be automated;
+voice enrollment, rights confirmation, disputed facts, and production approval
+remain explicit human responsibilities.
+
+| Design document | Contents |
+|---|---|
+| [Architecture and model selection](docs/presentation-architecture.md) | Specific LLM, speech, image, and embedding choices; tool integration; activity, data-flow, sequence, state, deployment, and delivery diagrams |
+| [Software implementation guide](docs/implementation-guide.md) | Service boundaries, typed contracts, API/data design, reliability, voice authorization, implementation milestones, and delivery artifacts |
+| [Validation and product delivery](docs/validation-and-delivery.md) | Source verification, measurable quality gates, voice and media testing, failure injection, release gates, and operational acceptance |
+
+**Status:** These documents specify a proposed implementation, not a delivered
+application. No provider integration, enrollment, renderer, automated test suite,
+or deployment is implemented in this repository yet. Model identifiers are
+recommendations checked against official SDK source on 2026-11-03; availability,
+account permissions, pricing, and capability compatibility must pass the
+documented preflight before implementation or release.
+
 ## Voice protection and unauthorized cloning
 
 **You cannot make a voice impossible to clone by registering a trademark.** A sound trademark protects a distinctive sound that identifies the commercial source of specified goods or services, subject to applicable law. It does not grant worldwide ownership of your vocal timbre or prohibit every imitation. Legal rights, contracts, secure deployment, provenance, and incident response should work together.
