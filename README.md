@@ -1,6 +1,6 @@
 # myAI-Assistant-with-voice-trademark
 
-A reference design for an AI assistant that presents approved material in the author's authorized voice and handles interactive audience questions. The original concept has three core layers: a conversational brain, real-time voice output, and an interactive visual avatar. This README expands that concept into an implementation blueprint; the code below is illustrative and is not yet a deployed application.
+A reference design for an AI assistant that presents approved material in the author's authorized voice(i.e., trademark) and handles interactive audience questions. The original concept has three core layers: a conversational brain, real-time voice output, and an interactive visual avatar. This README expands that concept into an implementation blueprint; the code below is illustrative and is not yet a deployed application. An initial thinking as of now... bigger implementation needed.
 
 ## Goals and boundaries
 
@@ -19,7 +19,7 @@ A reference design for an AI assistant that presents approved material in the au
                                 ▼
 ┌────────────────────────────── Application API ──────────────────────────────┐
 │ Session/auth │ rate limits │ consent notice │ orchestration │ audit events  │
-└───────────────┬───────────────────────────┬──────────────────┬───────────────┘
+└───────────────┬───────────────────────────┬──────────────────┬──────────────┘
                 │                           │                  │
                 ▼                           ▼                  ▼
        Speech-to-text             Agent workflow       Text-to-speech / avatar
