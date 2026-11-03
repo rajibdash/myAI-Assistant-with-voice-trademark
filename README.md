@@ -1,6 +1,32 @@
 # myAI-Assistant-with-voice-trademark
 
-A reference design for an AI assistant that presents approved material in the author's authorized voice and handles interactive audience questions. Authorization is not the same as trademark registration; see [Voice protection and unauthorized cloning](#voice-protection-and-unauthorized-cloning). The original concept has three core layers: a conversational brain, real-time voice output, and an interactive visual avatar. This README expands that concept into an implementation blueprint; the code below is illustrative and is not yet a deployed application. An initial thinking as of now... bigger implementation needed.
+A project for an AI assistant that presents approved material in the author's authorized voice and handles interactive audience questions. Authorization is not the same as trademark registration; see [Voice protection and unauthorized cloning](#voice-protection-and-unauthorized-cloning). The first runnable increment implements reviewed text sources, citation-linked draft slides, explicit approval, and editable PowerPoint export. Voice, video, and audience interaction remain planned; the older code examples later in this README are illustrative, not the running application.
+
+## Run the first implementation
+
+See the [local setup, demo, API, and delivery status](docs/local-development.md).
+Python 3.12 and Node.js 22+ are required. The default extractive generator needs
+no paid API or voice enrollment.
+
+```bash
+python3.12 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements-dev.lock
+python -m pip install --no-deps -e .
+npm --prefix workers/render ci --ignore-scripts --no-audit --no-fund
+npm --prefix workers/render run build
+export PRESENTATION_API_TOKEN="$(python -c 'import secrets; print(secrets.token_urlsafe(32))')"
+presentation-api
+```
+
+In another terminal with the **same token** and activated environment, run
+`python examples/demo.py`. It pauses for source/deck approval and produces
+`.local-data/demo.pptx`. Interactive API documentation is at
+`http://127.0.0.1:8000/docs`; authorize with the token. Run `pytest` after building
+the renderer to exercise real PPTX generation alongside API and provider tests.
+
+**Local development only:** one owner, one process, SQLite, no public exposure.
+This is not yet the complete voice presentation product or a production service.
 
 ## Goals and boundaries
 
@@ -23,12 +49,14 @@ remain explicit human responsibilities.
 | [Software implementation guide](docs/implementation-guide.md) | Service boundaries, typed contracts, API/data design, reliability, voice authorization, implementation milestones, and delivery artifacts |
 | [Validation and product delivery](docs/validation-and-delivery.md) | Source verification, measurable quality gates, voice and media testing, failure injection, release gates, and operational acceptance |
 
-**Status:** These documents specify a proposed implementation, not a delivered
-application. No provider integration, enrollment, renderer, automated test suite,
-or deployment is implemented in this repository yet. Model identifiers are
-recommendations checked against official SDK source on 2026-11-03; availability,
-account permissions, pricing, and capability compatibility must pass the
-documented preflight before implementation or release.
+**Status:** The architecture documents describe the full target; the
+[delivery status](docs/local-development.md#delivery-status-and-open-decisions)
+identifies the smaller implemented increment and remaining decisions. There is a
+local API, source/deck approval, an optional OpenAI evidence-selection adapter,
+PPTX renderer, tests, and CI. There is no voice enrollment, speech/video, live
+audience mode, or production deployment yet. Model identifiers were checked against
+official SDK source on 2026-11-03; provider access, pricing, and compatibility still
+require account-level preflight before live use.
 
 ## Voice protection and unauthorized cloning
 
@@ -299,7 +327,12 @@ if __name__ == "__main__":
 
 The thresholds above are starting examples, not universal targets. Calibrate them with the owner and moderator using representative test cases before using the gate to approve production releases.
 
-A minimal GitHub Actions quality gate can run unit tests and the evaluation command. Add deployment only after configuring repository secrets, environment approvals, and a rollback target:
+The executable foundation CI is [`.github/workflows/foundation.yml`](.github/workflows/foundation.yml);
+it builds the actual renderer and runs the current tests without paid API keys.
+The following is an illustrative future full-product gate, not an installed
+workflow: its `requirements.txt` and `eval_gate.py` references are not implemented.
+Add deployment only after configuring repository secrets, environment approvals,
+and a rollback target:
 
 ```yaml
 # .github/workflows/assistant-quality.yml

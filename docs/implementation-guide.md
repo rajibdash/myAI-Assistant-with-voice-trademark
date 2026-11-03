@@ -1,7 +1,10 @@
 # Software design and implementation guide
 
-**Status:** Implementation specification; the services and schemas below do not
-exist yet. Read the [architecture](presentation-architecture.md) and
+**Status:** Full-product implementation specification. A smaller local
+source-to-PPTX increment now exists; see its
+[actual scope and setup](local-development.md). The full services, contracts,
+and production controls below are not all implemented. Read the
+[architecture](presentation-architecture.md) and
 [acceptance strategy](validation-and-delivery.md) together with this guide.
 
 ## 1. Repository and service boundaries
@@ -24,7 +27,7 @@ tests/                       Unit, contract, integration and E2E tests
 infra/                       Reviewed deployment and environment configuration
 ```
 
-This is a proposed layout, not a list of existing files. Start with one workflow
+This is the target layout, not a list of existing files. Start with one workflow
 and explicit activities, not a framework for arbitrary agents. The backend owns
 the contracts; export JSON Schema/OpenAPI from Pydantic and generate frontend
 types. Validate all model/provider outputs again at the service boundary.

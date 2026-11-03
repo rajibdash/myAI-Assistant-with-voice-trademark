@@ -8,8 +8,9 @@ WebVTT captions, transcript, accessible browser presentation, source bibliograph
 and a signed release manifest. An optional live mode answers audience questions
 from the published evidence in the same authorized voice.
 
-This is a **proposed design** for the reference repository, not implemented
-functionality. A deployment should automate repeatable work after enrollment and
+This is the **full target design**, not a claim that the complete product is
+implemented. A [smaller local foundation](local-development.md) now supports
+reviewed sources and PPTX exports. A deployment should automate repeatable work after enrollment and
 approval rather than claiming that an autonomous model can guarantee truth,
 copyright clearance, or legal compliance.
 

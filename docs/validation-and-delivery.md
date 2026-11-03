@@ -1,9 +1,10 @@
 # Validation strategy and complete product delivery
 
-**Status:** A proposed test and acceptance specification, not executed results.
-The repository currently has no runnable application or automated test harness.
-Targets below are initial release criteria to ratify during M0, not vendor
-performance promises or evidence that these thresholds have already been met.
+**Status:** Full-product test and acceptance specification, not executed results
+for the complete product. The repository now has a local API/PPTX increment and
+automated tests; see [current validation coverage](local-development.md#validation).
+Targets below remain initial full-product release criteria to ratify during M0,
+not vendor performance promises or evidence those thresholds have been met.
 
 ## 1. Verify information, not just fluent output
 
