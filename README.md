@@ -274,7 +274,7 @@ class AvatarProvider(Protocol):
 
 Stream text and captions as early as safely possible. Apply bounded timeouts, retry only idempotent operations, and expose degraded modes (text-only answer or moderator handoff) when a provider is unavailable.
 
-## Knowledge and data preparation
+## Knowledge base and data preparation
 
 1. Collect presentation material that the owner is authorized to use.
 2. Remove secrets and unnecessary personal data; record document title, revision, owner, and publication status.
@@ -285,7 +285,7 @@ Stream text and captions as early as safely possible. Apply bounded timeouts, re
 
 Do not use audience recordings or transcripts for model training by default. If any collection or training is introduced, obtain informed consent, define retention/deletion rules, and document the intended use.
 
-## MLOps and release lifecycle
+## ML Ops and release lifecycle
 
 Treat prompts, evaluation datasets, model/provider settings, and knowledge indexes as versioned release inputs. Track quality and reliability without making raw audience content the default telemetry.
 
@@ -328,9 +328,9 @@ if __name__ == "__main__":
 The thresholds above are starting examples, not universal targets. Calibrate them with the owner and moderator using representative test cases before using the gate to approve production releases.
 
 The executable foundation CI is [`.github/workflows/foundation.yml`](.github/workflows/foundation.yml);
-it builds the actual renderer and runs the current tests without paid API keys.
-The following is an illustrative future full-product gate, not an installed
-workflow: its `requirements.txt` and `eval_gate.py` references are not implemented.
+It builds the actual renderer and runs the current tests without paid API keys.
+The following is an illustrative future full product gate, not an installed
+workflow: it's `requirements.txt` and `eval_gate.py` references are not implemented.
 Add deployment only after configuring repository secrets, environment approvals,
 and a rollback target:
 
